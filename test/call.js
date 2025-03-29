@@ -25,9 +25,9 @@ function getTokens(){
 }
 
 //Function to get tokens but with market data
-function getTokens2(){
+function getTokens2(callback){
     let tokens = new Promise((resolve,reject) => {
-        let URL = "https://api.coingecko.com/api/v3/coins/markets?order=market_cap_desc&vs_currency=usd&per_page=3";
+        let URL = "https://api.coingecko.com/api/v3/coins/markets?order=market_cap_desc&vs_currency=usd&per_page=5";
         let xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function(){
             if(xhttp.readyState == xhttp.DONE){
@@ -47,7 +47,7 @@ function getTokens2(){
     })
 
     tokens
-        .then((tokens) => {return tokens})
+        .then((tokens) => {return callback(tokens)})
         .catch((error) => {return new Error(error)})
 }
 
@@ -65,5 +65,37 @@ function extractTokenInfo(tokenList){
     return tokenArray;
 }
 
-getTokens2()
+function populateTable(tokenArray){
+    let coinTable = document.querySelector(".token-market-data");
+    for(let i = 0; i < tokenArray.length; i ++){
+        let tr = document.createElement("tr");
+        tr.classList.add("token-market-data");
+        tokenImage = document.createElement("img");
+        tokenImage.style.height = "32px";
+        tokenImage.style.width = "32px";
+        tokenImage.src = tokenArray[i].image;
+        tokenImageTd = document.createElement("td");
+        tokenImageTd.appendChild(tokenImage);
 
+        tokenName = document.createElement("td");
+        tokenName.innerText = tokenArray[i].name;
+        tokenPrice = document.createElement("td");
+        tokenPrice.innerText = tokenArray[i].price + "$";
+        tokenMarketCap = document.createElement("td");
+        tokenMarketCap.innerText = tokenArray[i].market_cap + "$";
+
+        tr.appendChild(tokenImageTd);
+        tr.appendChild(tokenName)
+        tr.appendChild(tokenPrice)
+        tr.appendChild(tokenMarketCap)
+
+        coinTable.appendChild(tr);
+    }
+}
+
+function test(){
+    alert("I am an alert")
+}
+
+
+getTokens2(populateTable)
