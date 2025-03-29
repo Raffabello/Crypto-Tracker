@@ -27,12 +27,16 @@ function getTokens(){
 //Function to get tokens but with market data
 function getTokens2(){
     let tokens = new Promise((resolve,reject) => {
-        let URL = "https://api.coingecko.com/api/v3/coins/markets?order=market_cap_desc&vs_currency=usd";
+        let URL = "https://api.coingecko.com/api/v3/coins/markets?order=market_cap_desc&vs_currency=usd&per_page=3";
         let xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function(){
             if(xhttp.readyState == xhttp.DONE){
                 if(xhttp.status === 200){
-                    return resolve(xhttp.response);
+                    let data = JSON.parse(xhttp.responseText);
+                    //I want the image, the name, the price and the market cap
+                    //I can extract manually
+                    let tokenArray = extractTokenInfo(data);
+                    return resolve(tokenArray)
                 }else{
                     reject("Tokens could not be retrieved")
                 }
@@ -41,4 +45,25 @@ function getTokens2(){
         xhttp.open("GET", URL);
         xhttp.send();
     })
+
+    tokens
+        .then((tokens) => {return tokens})
+        .catch((error) => {return new Error(error)})
 }
+
+function extractTokenInfo(tokenList){
+    let tokenArray = [];
+    for(tokenData of tokenList){
+        let token = {
+            image:tokenData.image,
+            name:tokenData.name,
+            price:tokenData.current_price,
+            market_cap:tokenData.market_cap,
+        };
+        tokenArray.push(token);
+    }
+    return tokenArray;
+}
+
+getTokens2()
+
