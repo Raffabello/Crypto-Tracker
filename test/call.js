@@ -48,6 +48,7 @@ function getTokens2(callback){
 
     tokens
         .then((tokens) => {return callback(tokens)})
+        .then((tokenArray) => cacheTokenPrice(tokenArray))
         .catch((error) => {return new Error(error)})
 }
 
@@ -91,11 +92,28 @@ function populateTable(tokenArray){
 
         coinTable.appendChild(tr);
     }
+    return tokenArray;
 }
 
 function test(){
     alert("I am an alert")
 }
 
+/*
+    How cache works
+    Whenever the user clicks the chrome extension make an API request:
+    1)The API request is made
+    2)Save price, and save the time when the API request was made, both in the local storage [{time,price}]
+    3)When the next API call is made, just save it into the local Storage again with the push method
 
-getTokens2(populateTable)
+    Tip:It could be useful to have a check when API calls are made, so if two API calls are made within 2 - 3 seconds or anyway
+    A short timespan, then just show the latest cached value (For better performance)
+*/
+
+function cacheTokenPrice(tokenArray){
+
+}
+
+
+
+getTokens2(populateTable);
