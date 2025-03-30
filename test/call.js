@@ -85,10 +85,17 @@ function populateTable(tokenArray){
         tokenMarketCap = document.createElement("td");
         tokenMarketCap.innerText = tokenArray[i].market_cap + "$";
 
+        let tokenPlot = document.createElement("td");
+        let tokenPlotBtn = document.createElement("button");
+        tokenPlotBtn.innerHTML = "View Plot"
+        tokenPlotBtn.onclick = drawPlot;
+        tokenPlot.appendChild(tokenPlotBtn)
+
         tr.appendChild(tokenImageTd);
         tr.appendChild(tokenName)
         tr.appendChild(tokenPrice)
         tr.appendChild(tokenMarketCap)
+        tr.appendChild(tokenPlot)
 
         coinTable.appendChild(tr);
     }
@@ -136,6 +143,10 @@ function cacheTokenPrice(tokenArray){
         }})) 
         ls.setItem(LS_KEY,JSON.stringify(tokenArrayMap));
     }
+}
+
+function drawPlot(){
+    myWindow.document.write("<h1>Hello World</h1>")
 }
 
 
