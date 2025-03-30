@@ -111,6 +111,36 @@ function test(){
 */
 
 function cacheTokenPrice(tokenArray){
+    const LS_KEY = "Crypto-tracker-cache";
+    let ls = localStorage;
+    let timestamp = new Date();
+    timestamp = timestamp.getTime();
+    console.log(timestamp)
+    //{tokenName: [{time,price}]
+    if(ls.getItem(LS_KEY) != null){
+        let tokenArrayCached = JSON.parse(ls.getItem(LS_KEY));
+        tokenArray.forEach(function(tokenArrayItem){
+            tokenArrayCached.forEach(function(tokenArrayCachedItem){
+                if(tokenArrayItem.name === tokenArrayCachedItem.name){
+                    tokenArrayCachedItem.pairs.push({x:timestamp, y:tokenArrayItem.price});
+                }
+            })
+        })
+        ls.setItem(LS_KEY, JSON.stringify(tokenArrayCached));
+    }else{
+        let tokenArrayMap = tokenArray.map((function(token){
+        return {
+            name:token.name,
+            pairs:[{x:timestamp, y:token.price}],
+        }})) 
+        ls.setItem(LS_KEY,JSON.stringify(tokenArrayMap));
+    }
+
+    //test
+
+/*     let arr = JSON.parse(localStorage.getItem("Crypto-tracker-cache"));
+    console.log(arr) */
+
 
 }
 
