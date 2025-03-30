@@ -110,13 +110,14 @@ function test(){
     A short timespan, then just show the latest cached value (For better performance)
 */
 
+//
+
+//Do not look this function for too long, it can blow your soul out
 function cacheTokenPrice(tokenArray){
     const LS_KEY = "Crypto-tracker-cache";
     let ls = localStorage;
     let timestamp = new Date();
     timestamp = timestamp.getTime();
-    console.log(timestamp)
-    //{tokenName: [{time,price}]
     if(ls.getItem(LS_KEY) != null){
         let tokenArrayCached = JSON.parse(ls.getItem(LS_KEY));
         tokenArray.forEach(function(tokenArrayItem){
@@ -135,13 +136,6 @@ function cacheTokenPrice(tokenArray){
         }})) 
         ls.setItem(LS_KEY,JSON.stringify(tokenArrayMap));
     }
-
-    //test
-
-/*     let arr = JSON.parse(localStorage.getItem("Crypto-tracker-cache"));
-    console.log(arr) */
-
-
 }
 
 
