@@ -88,7 +88,9 @@ function populateTable(tokenArray){
         let tokenPlot = document.createElement("td");
         let tokenPlotBtn = document.createElement("button");
         tokenPlotBtn.innerHTML = "View Plot"
-        tokenPlotBtn.onclick = drawPlot;
+        tokenPlotBtn.addEventListener("click", function(){
+            drawPlot(tokenArray[i].name)
+        })
         tokenPlot.appendChild(tokenPlotBtn)
 
         tr.appendChild(tokenImageTd);
