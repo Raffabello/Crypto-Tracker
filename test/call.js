@@ -145,8 +145,56 @@ function cacheTokenPrice(tokenArray){
     }
 }
 
-function drawPlot(){
-    myWindow.document.write("<h1>Hello World</h1>")
+let myChart;
+function drawPlot(tokenName){
+    /*
+    get the JSON parsed array from the localStorage
+    filter the token and extract two arrays:array of time and array of price
+    */
+    let ls = localStorage;
+    let tokenArray = JSON.parse(ls.getItem("Crypto-tracker-cache"));
+    if(tokenArray !== null){
+        let token = tokenArray.filter(function(token){
+            if(token.name === tokenName){
+                return token
+            }
+        });
+        token = token[0];
+        let timeArray = token.pairs.map(function(pair){
+            let unixTime = pair.x;
+            let date = new Date(unixTime); //from Unix time get hh:mm dd-mm-yyyy
+            return formatDate(date);
+        })
+        let priceArray = token.pairs.map(function(pair){
+            return pair.y;
+        })
+        const ctx = document.getElementById("token-chart-plot").getContext("2d");
+        if(myChart){
+            myChart.destroy();
+        }
+        myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+              labels: timeArray, // X-axis labels, time hh:mm dd-mm-yyyy
+              datasets: [{
+                label: 'Price',
+                data: priceArray, // Y-axis values, token price
+                borderColor: 'green',
+                backgroundColor: 'rgba(0, 0, 255, 0.1)',
+                borderWidth: 2
+              }]
+            },
+            options: {
+              responsive: true,
+              maintainAspectRatio: false
+            }
+          });
+    }
+ }
+
+function formatDate(unixDate){
+    let date = new Date(unixDate);
+    return date.toLocaleString();
 }
 
 
