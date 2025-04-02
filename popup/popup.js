@@ -19,9 +19,10 @@ function getTokensInfo(){
     })
 }
 
-async function loadTokensMarketData(){
+async function loadTokensMarketData(callback){
     try{
         let tokens = await getTokensInfo();
+        callback(tokens)
     }catch(error){
         console.log(error);
     }
