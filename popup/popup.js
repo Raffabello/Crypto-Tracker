@@ -36,26 +36,29 @@ function displayTokensMarketData(tokens){
         for(let i = 0; i < tokens.length; i++){
             console.log(tokens[i])
             let tokenRow = document.createElement("div");
+            tokenRow.classList.add("token-row");
 
             //token image
+            let tokenImageBox = document.createElement("div");
             let tokenImage = document.createElement("img");
             tokenImage.src = tokens[i].image;
             tokenImage.style.height = "24px";
             tokenImage.style.width = "24px";
+            tokenImageBox.appendChild(tokenImage);
             
             //token name
-            let tokenName = document.createElement("span");
+            let tokenName = document.createElement("div");
             tokenName.innerText = tokens[i].name;
 
             //token price
-            let tokenPrice = document.createElement("span");
+            let tokenPrice = document.createElement("div");
             tokenPrice.innerText = tokens[i].current_price;
 
             //Token Market Cap
-            let marketCap = document.createElement("span");
+            let marketCap = document.createElement("div");
             marketCap.innerText = tokens[i].market_cap;
             
-            tokenRow.appendChild(tokenImage);
+            tokenRow.appendChild(tokenImageBox);
             tokenRow.appendChild(tokenName);
             tokenRow.appendChild(tokenPrice);
             tokenRow.appendChild(marketCap);
