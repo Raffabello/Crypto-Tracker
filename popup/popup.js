@@ -16,6 +16,9 @@ function getTokensInfo(){
             .then(function(tokens){
                 resolve(tokens);
             })
+            .catch(function(error){
+                reject(error)
+            })
     })
 }
 
@@ -60,3 +63,5 @@ function displayTokensMarketData(tokens){
             tokenInfoFrame.appendChild(tokenRow);
         }
 }
+
+loadTokensMarketData(displayTokensMarketData)
