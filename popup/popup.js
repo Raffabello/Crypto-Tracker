@@ -9,7 +9,7 @@ function getTokensInfo(){
                     if(response.status === 200){
                         return response.json();
                     }else{
-                        reject("Server successfully answered, but the data was not retrievable\nThe status code received is " + response.status);
+                        reject("Connected successfully , but the data was not retrievable\nThe status code received is " + response.status);
                     }
                 }
             })
@@ -26,4 +26,37 @@ async function loadTokensMarketData(callback){
     }catch(error){
         console.log(error);
     }
+}
+
+function displayTokensMarketData(tokens){
+        let tokenInfoFrame = document.querySelector(".token-info-frame");
+        for(let i = 0; i < tokens.length; i++){
+            console.log(tokens[i])
+            let tokenRow = document.createElement("div");
+
+            //token image
+            let tokenImage = document.createElement("img");
+            tokenImage.src = tokens[i].image;
+            tokenImage.style.height = "24px";
+            tokenImage.style.width = "24px";
+            
+            //token name
+            let tokenName = document.createElement("span");
+            tokenName.innerText = tokens[i].name;
+
+            //token price
+            let tokenPrice = document.createElement("span");
+            tokenPrice.innerText = tokens[i].current_price;
+
+            //Token Market Cap
+            let marketCap = document.createElement("span");
+            marketCap.innerText = tokens[i].market_cap;
+            
+            tokenRow.appendChild(tokenImage);
+            tokenRow.appendChild(tokenName);
+            tokenRow.appendChild(tokenPrice);
+            tokenRow.appendChild(marketCap);
+
+            tokenInfoFrame.appendChild(tokenRow);
+        }
 }
