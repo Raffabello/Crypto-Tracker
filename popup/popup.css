@@ -4,3 +4,16 @@ body{
 
     border:1px solid black;
 }
+
+.token-info-frame{
+    display:grid;
+    grid-auto-rows: 1fr;
+    border:1px solid black;
+    height: 60%;
+}
+
+.token-row{
+    display:grid;
+    grid-template-columns: 0.3fr 1fr 1fr 1fr;
+    border:1px solid black;
+}
