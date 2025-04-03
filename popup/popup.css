@@ -1,5 +1,5 @@
 body{
-    height:350px;
+    height:400px;
     width:350px;
 
     border:1px solid black;
@@ -7,10 +7,9 @@ body{
 
 .token-info-frame{
     display:grid;
-    height: 310px;
+    height: 300px;
     padding:5px;
     margin:10px;
-    gap:12px;
 }
 
 .token-info-header{

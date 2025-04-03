@@ -55,14 +55,18 @@ function displayTokensMarketData(tokens){
             let tokenPrice = document.createElement("div");
             tokenPrice.innerText = tokens[i].current_price;
 
-            //Token Market Cap
-            let marketCap = document.createElement("div");
-            marketCap.innerText = tokens[i].market_cap;
+            //Plot
+            let plotTokenIcon = document.createElement("img");
+            plotTokenIcon.src = "../icons/diagram-svgrepo-com.svg"
+            plotTokenIcon.style.height = "24px";
+            plotTokenIcon.style.width = "24px";
+            let plotTokenPrice = document.createElement("div");
+            plotTokenPrice.appendChild(plotTokenIcon);
             
             tokenRow.appendChild(tokenImageBox);
             tokenRow.appendChild(tokenName);
             tokenRow.appendChild(tokenPrice);
-            tokenRow.appendChild(marketCap);
+            tokenRow.appendChild(plotTokenPrice);
 
             tokenInfoFrame.appendChild(tokenRow);
         }
