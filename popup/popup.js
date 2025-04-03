@@ -60,6 +60,11 @@ function displayTokensMarketData(tokens){
             plotTokenIcon.src = "../icons/stockchart-svgrepo-com.svg"
             plotTokenIcon.style.height = "24px";
             plotTokenIcon.style.width = "24px";
+
+            plotTokenIcon.addEventListener("click", function(){
+                showTokenPriceWindow(getTokenPricePlot,tokens[i].name);
+            })
+
             let plotTokenPrice = document.createElement("div");
             plotTokenPrice.appendChild(plotTokenIcon);
             
@@ -73,3 +78,20 @@ function displayTokensMarketData(tokens){
 }
 
 loadTokensMarketData(displayTokensMarketData)
+
+function showTokenPriceWindow(callback, token){
+    let graphWindow = document.querySelector(".token-graph-window");
+    graphWindow.classList.remove("token-graph-window-closed");
+    graphWindow.classList.add("token-graph-window-open");
+    callback(token);
+}
+
+function closeTokenPriceWindow(){
+    let graphWindow = document.querySelector(".token-graph-window");
+    graphWindow.classList.remove("token-graph-window-open");
+    graphWindow.classList.add("token-graph-window-closed");
+}
+
+function getTokenPricePlot(token){
+    console.log(token)
+}
