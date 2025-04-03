@@ -6,10 +6,13 @@ body{
 }
 
 .token-info-frame{
+    position:relative;
     display:grid;
     height: 300px;
     padding:5px;
     margin:10px;
+
+    z-index:1;
 }
 
 .token-info-header{
@@ -48,4 +51,27 @@ body{
     justify-content: center;
     align-items: center;
     height:100%;
+}
+
+.token-graph-window{
+    position:absolute;
+    transform:translate(-50%,-50%);
+    top:50%;
+    left:50%;
+    height:280px;
+    width:280px;
+    
+    background-color:white;
+    border-radius:8px;
+    box-shadow:0px 0px 10px gainsboro;
+
+    z-index:2;
+}
+
+.token-graph-window-closed{
+    display:none;
+}
+
+.token-graph-window-open{
+    display:block;
 }
