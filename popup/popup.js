@@ -57,7 +57,7 @@ function displayTokensMarketData(tokens){
 
             //Plot
             let plotTokenIcon = document.createElement("img");
-            plotTokenIcon.src = "../icons/diagram-svgrepo-com.svg"
+            plotTokenIcon.src = "../icons/stockchart-svgrepo-com.svg"
             plotTokenIcon.style.height = "24px";
             plotTokenIcon.style.width = "24px";
             let plotTokenPrice = document.createElement("div");
