@@ -7,19 +7,41 @@ body{
 
 .token-info-frame{
     display:grid;
-    height: 300px;
-    border:1px solid black;
+    height: 310px;
     padding:5px;
+    margin:10px;
+    gap:12px;
+}
+
+.token-info-header{
+    display:grid;
+    grid-template-columns: 0.8fr 1fr 1fr 1.5fr;
+}
+
+.token-info-header div{
+    display:flex;
+    justify-content: center;
+}
+
+@keyframes token_row_enter{
+    0%{opacity:0%}
+    100%{opacity:100%}
 }
 
 .token-row{
+    font-size:14px;
     display:grid;
     grid-template-columns: 0.8fr 1fr 1fr 1.5fr;
     align-items: center;
-    height:calc(300px/5);
+    height:calc(300px/6);
 
     box-shadow:0px 5px 5px gainsboro;
-    border-radius:0px 0px 12px 12px;
+    border-radius:12px;
+
+    opacity:0;
+    animation: token_row_enter 0.5s ease;
+    animation-delay: calc(var(--i)*0.1s);
+    animation-fill-mode: forwards;
 }
 
 .token-row div{
