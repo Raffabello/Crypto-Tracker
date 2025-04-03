@@ -37,6 +37,7 @@ function displayTokensMarketData(tokens){
             console.log(tokens[i])
             let tokenRow = document.createElement("div");
             tokenRow.classList.add("token-row");
+            tokenRow.style.setProperty("--i", i);
 
             //token image
             let tokenImageBox = document.createElement("div");
