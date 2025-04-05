@@ -31,7 +31,7 @@ async function loadTokensMarketData(){
     }
 }
 
-function displayTokensMarketData(tokens){
+function displayTokensMarketData(tokens, callback){
         let tokenInfoFrame = document.querySelector(".token-info-frame");
         for(let i = 0; i < tokens.length; i++){
             console.log(tokens[i])
@@ -119,20 +119,6 @@ function cacheTokensPrice(tokenArray){
             })
             chrome.storage.local.set({"Crypto-tracker-cache":cachedArray})
         }
-    })
-}
-
-//test function
-function getAllCachedValues(){
-    chrome.storage.local.get(null, (items) => {
-        console.log(items);
-    })
-}
-
-//test function
-function clearLocalStorage(){
-    chrome.storage.local.clear(() => {
-        console.log("All values all cleared")
     })
 }
 
