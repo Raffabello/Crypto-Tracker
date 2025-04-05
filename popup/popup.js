@@ -22,10 +22,10 @@ function getTokensInfo(){
     })
 }
 
-async function loadTokensMarketData(callback){
+async function loadTokensMarketData(){
     try{
         let tokens = await getTokensInfo();
-        callback(tokens)
+        return tokens;
     }catch(error){
         console.log(error);
     }
@@ -75,9 +75,9 @@ function displayTokensMarketData(tokens){
 
             tokenInfoFrame.appendChild(tokenRow);
         }
+        callback(tokens)
 }
 
-loadTokensMarketData(displayTokensMarketData)
 
 function showTokenPriceWindow(callback, token){
     let graphWindow = document.querySelector(".token-graph-window");
@@ -95,3 +95,46 @@ function closeTokenPriceWindow(){
 function getTokenPricePlot(token){
     console.log(token)
 }
+
+function cacheTokensPrice(tokenArray){
+    let currentTime = (new Date()).toLocaleTimeString();
+    chrome.storage.local.get("Crypto-tracker-cache", (items) => {
+        if(items.hasOwnProperty("Crypto-tracker-cache")){
+            //Values are recorded
+            let storedArray = items["Crypto-tracker-cache"];
+            storedArray.forEach(function(storedArrayItem){
+                tokenArray.forEach(function(tokenArrayItem){
+                    if(storedArrayItem.name === tokenArrayItem.name){
+                        storedArrayItem.pairs.push({x:currentTime,y:tokenArrayItem.current_price});
+                    }
+                })
+            })
+            chrome.storage.local.set({"Crypto-tracker-cache":storedArray});
+        }else{
+            let cachedArray = tokenArray.map(function(token){
+                return {
+                    name:token.name,
+                    pairs:[{x:currentTime, y:token.current_price}]
+                }
+            })
+            chrome.storage.local.set({"Crypto-tracker-cache":cachedArray})
+        }
+    })
+}
+
+//test function
+function getAllCachedValues(){
+    chrome.storage.local.get(null, (items) => {
+        console.log(items);
+    })
+}
+
+//test function
+function clearLocalStorage(){
+    chrome.storage.local.clear(() => {
+        console.log("All values all cleared")
+    })
+}
+
+loadTokensMarketData()
+    .then((tokens) => displayTokensMarketData(tokens,cacheTokensPrice))
