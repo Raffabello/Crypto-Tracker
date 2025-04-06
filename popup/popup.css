@@ -53,6 +53,11 @@ body{
     height:100%;
 }
 
+@keyframes plotShowsUp{
+    0%{opacity:0%; transform:translate(-50%, -30%)}
+    100%{opacity:100%; transform:translate(-50%,-50%)}
+}
+
 .token-graph-window{
     position:absolute;
     transform:translate(-50%,-50%);
@@ -77,10 +82,13 @@ body{
     font-size:15px;
 }
 
+
 #graph{
     position:relative;
     height:250px !important;
     width:250px !important;
+
+    animation:plotShowsUp .5s ease;
 }
 
 .graph-menu-buttons{
@@ -95,4 +103,6 @@ body{
 
 .token-graph-window-open{
     visibility:visible;
+
+    animation:plotShowsUp .5s ease;
 }
