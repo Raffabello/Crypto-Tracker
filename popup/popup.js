@@ -1,3 +1,18 @@
+let plotExitButton = document.getElementById("close-graph");
+plotExitButton.addEventListener("click", function(){
+        closeTokenPriceWindow();
+})        
+
+let plotNextButton = document.getElementById("next-graph");
+plotNextButton.addEventListener("click", function(){
+        showNextTokenPlot();
+})
+
+let plotPreviousButton = document.getElementById("previous-graph");
+plotPreviousButton.addEventListener("click", function(){
+        showPreviousTokenPlot();
+})
+
 function getTokensInfo(){
     const URL = "https://api.coingecko.com/api/v3/coins/markets?order=market_cap_desc&vs_currency=usd&per_page=5";
     return new Promise((resolve,reject) => {
@@ -80,6 +95,8 @@ function displayTokensMarketData(tokens, callback){
 
 
 function showTokenPriceWindow(callback, token){
+    let plotHeader = document.getElementById("token-graph-header");
+    plotHeader.innerText = token;
     let graphWindow = document.querySelector(".token-graph-window");
     graphWindow.classList.remove("token-graph-window-closed");
     graphWindow.classList.add("token-graph-window-open");
@@ -87,6 +104,7 @@ function showTokenPriceWindow(callback, token){
 }
 
 function closeTokenPriceWindow(){
+    myChart.destroy();
     let graphWindow = document.querySelector(".token-graph-window");
     graphWindow.classList.remove("token-graph-window-open");
     graphWindow.classList.add("token-graph-window-closed");
