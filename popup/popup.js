@@ -71,6 +71,7 @@ function displayTokensMarketData(tokens, callback){
 
             //Plot
             let plotTokenIcon = document.createElement("img");
+            plotTokenIcon.style.cursor = "pointer";
             plotTokenIcon.src = "../icons/stockchart-svgrepo-com.svg"
             plotTokenIcon.style.height = "24px";
             plotTokenIcon.style.width = "24px";
@@ -89,8 +90,7 @@ function displayTokensMarketData(tokens, callback){
 
             tokenInfoFrame.appendChild(tokenRow);
         }
-        callback(tokens); //TODO: I would like to add a logic that only shows data within a 6 hours range (-3 hours / + 3 hours)
-        
+        callback(tokens); //TODO: I would like to add a logic that only shows data within a 6 hours range (-3 hours / + 3 hours)   
 }
 
 
