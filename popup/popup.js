@@ -89,7 +89,8 @@ function displayTokensMarketData(tokens, callback){
 
             tokenInfoFrame.appendChild(tokenRow);
         }
-        callback(tokens)
+        callback(tokens); //TODO: I would like to add a logic that only shows data within a 6 hours range (-3 hours / + 3 hours)
+        
 }
 
 
