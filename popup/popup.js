@@ -103,6 +103,33 @@ function showTokenPriceWindow(callback, token){
     callback(token);
 }
 
+function showNextTokenPlot(){
+    let currentToken = document.getElementById("token-graph-header");
+    chrome.storage.local.get("Crypto-tracker-cache", (item) => {
+        let cachedArray = item["Crypto-tracker-cache"];
+        let cachedArrayNames = cachedArray.map((token) => token.name);
+        
+        let currentIndex = cachedArrayNames.indexOf(currentToken.innerText);
+        if(currentIndex < cachedArray.length - 1){
+            currentToken.innerText = cachedArrayNames[currentIndex + 1];
+            getTokenPricePlot(cachedArrayNames[currentIndex + 1])
+        }
+    })
+}
+
+function showPreviousTokenPlot(){
+    let currentToken = document.getElementById("token-graph-header");
+    chrome.storage.local.get("Crypto-tracker-cache", (item) => {
+        let cachedTokens =  Object.values(item)[0];
+        let cachedArrayNames = cachedTokens.map((token) => token.name);
+        let currentIndex = cachedArrayNames.indexOf(currentToken.innerText);
+        if(currentIndex > 0){
+            currentToken.innerText = cachedArrayNames[currentIndex - 1];
+            getTokenPricePlot(cachedArrayNames[currentIndex - 1])
+        }
+    })
+}
+
 function closeTokenPriceWindow(){
     myChart.destroy();
     let graphWindow = document.querySelector(".token-graph-window");
