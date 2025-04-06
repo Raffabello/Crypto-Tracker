@@ -49,7 +49,6 @@ async function loadTokensMarketData(){
 function displayTokensMarketData(tokens, callback){
         let tokenInfoFrame = document.querySelector(".token-info-frame");
         for(let i = 0; i < tokens.length; i++){
-            console.log(tokens[i])
             let tokenRow = document.createElement("div");
             tokenRow.classList.add("token-row");
             tokenRow.style.setProperty("--i", i);
@@ -137,8 +136,37 @@ function closeTokenPriceWindow(){
     graphWindow.classList.add("token-graph-window-closed");
 }
 
-function getTokenPricePlot(token){
-    console.log(token)
+let myChart;
+function getTokenPricePlot(selectedToken){
+    chrome.storage.local.get("Crypto-tracker-cache", (item) => {
+        let cachedTokens = Object.values(item)[0];
+        let tokenPricesVariation = cachedTokens.filter(function(cachedToken){
+            if(cachedToken.name === selectedToken){
+                return cachedToken.pairs;
+            }
+        })
+
+        let timeArray = tokenPricesVariation[0].pairs.map((pair) => pair.x);
+        let priceArray = tokenPricesVariation[0].pairs.map((pair) => pair.y);
+        //Draw Plot
+        const ctx = document.getElementById("graph").getContext("2d");
+        if(myChart){
+            myChart.destroy();
+        }
+        myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+              labels: timeArray, // X-axis labels, time hh:mm dd-mm-yyyy
+              datasets: [{
+                label: 'Price',
+                data: priceArray, // Y-axis values, token price
+                borderColor: 'green',
+                backgroundColor: 'rgba(0, 0, 255, 0.1)',
+                borderWidth: 2
+              }]
+            },
+          });
+    })
 }
 
 function cacheTokensPrice(tokenArray){
