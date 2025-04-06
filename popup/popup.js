@@ -170,7 +170,11 @@ function getTokenPricePlot(selectedToken){
 }
 
 function cacheTokensPrice(tokenArray){
-    let currentTime = (new Date()).toLocaleTimeString();
+    let currentTime = new Date();
+    let currentHour = currentTime.getHours().toString().padStart(2,"0");
+    let currentMinute = currentTime.getMinutes().toString().padStart(2,"0");
+    let ampm = currentHour > 12 ? "PM" : "AM";
+    currentTime = currentHour + ":" + currentMinute + ampm;
     chrome.storage.local.get("Crypto-tracker-cache", (items) => {
         if(items.hasOwnProperty("Crypto-tracker-cache")){
             //Values are recorded
