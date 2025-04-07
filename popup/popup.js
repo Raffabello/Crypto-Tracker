@@ -46,7 +46,7 @@ async function loadTokensMarketData(){
     }
 }
 
-function displayTokensMarketData(tokens, callback){
+function displayTokensMarketData(tokens){
         let tokenInfoFrame = document.querySelector(".token-info-frame");
         for(let i = 0; i < tokens.length; i++){
             let tokenRow = document.createElement("div");
@@ -76,8 +76,12 @@ function displayTokensMarketData(tokens, callback){
             plotTokenIcon.style.height = "24px";
             plotTokenIcon.style.width = "24px";
 
-            plotTokenIcon.addEventListener("click", function(){
-                showTokenPriceWindow(getTokenPricePlot,tokens[i].name);
+            chrome.storage.local.get("Crypto-tracker-cache", (items) => {
+                if(items.hasOwnProperty("Crypto-tracker-cache")){
+                    plotTokenIcon.addEventListener("click", function(){
+                        showTokenPriceWindow(getTokenPricePlot,tokens[i].name);
+                    })
+                }
             })
 
             let plotTokenPrice = document.createElement("div");
@@ -90,7 +94,6 @@ function displayTokensMarketData(tokens, callback){
 
             tokenInfoFrame.appendChild(tokenRow);
         }
-        callback(tokens); //TODO: I would like to add a logic that only shows data within a 6 hours range (-3 hours / + 3 hours)   
 }
 
 
@@ -201,4 +204,4 @@ function cacheTokensPrice(tokenArray){
 }
 
 loadTokensMarketData()
-    .then((tokens) => displayTokensMarketData(tokens,cacheTokensPrice))
+    .then((tokens) => displayTokensMarketData(tokens))
