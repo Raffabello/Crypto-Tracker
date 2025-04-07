@@ -1,11 +1,10 @@
 body{
     height:400px;
     width:350px;
-
-    border:1px solid black;
 }
 
 .token-info-frame{
+    position:relative;
     display:grid;
     height: 300px;
     padding:5px;
@@ -48,4 +47,33 @@ body{
     justify-content: center;
     align-items: center;
     height:100%;
+}
+
+footer{
+    border-top:1px solid gainsboro;
+}
+
+#raffabello-tag{
+    position:relative;
+    top:20px;
+    display:flex;
+    justify-content: space-evenly;
+    width:fit-content;
+    gap:5px;
+    padding:5px 10px;
+    border-radius:12px;
+
+    background-color:rgb(50,50,50);
+    color:white;
+
+    user-select:none;
+    cursor:pointer;
+
+    box-shadow:5px 5px 10px gainsboro;
+
+    transition:transform .5s ease;
+}
+
+#raffabello-tag:hover{
+    transform:translateY(-2px);
 }
