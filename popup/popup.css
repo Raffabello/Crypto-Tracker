@@ -5,16 +5,24 @@
 
 body{
     font-family: "openSans";
-    height:400px;
+    color:rgb(50,50,50);
+
+    height:460px;
     width:350px;
 }
 
 .token-info-frame{
     position:relative;
     display:grid;
-    height: 300px;
+    height: 350px;
     padding:5px;
     margin:10px;
+    border-bottom:1px solid gainsboro;
+
+    /* If you know what I mean
+    overflow-y: hidden;
+    overflow-x: hidden;
+    */
 }
 
 .token-info-header{
@@ -46,6 +54,14 @@ body{
     animation: token_row_enter 0.5s ease;
     animation-delay: calc(var(--i)*0.1s);
     animation-fill-mode: forwards;
+
+    transition:transform .3s ease, outline .5s ease;
+    user-select:none;
+}
+
+.token-row:hover{
+    transform:scale(1.05);
+    outline:1px solid rgb(50,50,50);
 }
 
 .token-row div{
@@ -55,16 +71,25 @@ body{
     height:100%;
 }
 
+header{
+    font-family:"openSans";
+    font-weight: 700;
+    font-size:20px;
+
+    border-bottom:1px solid gainsboro;
+    padding-bottom:15px;
+}
+
 footer{
+    position:relative;
+    top:5px;
     font-family: "openSans";
-    border-top:1px solid gainsboro;
 }
 
 #raffabello-tag{
-    position:relative;
-    top:20px;
     display:flex;
     justify-content: space-evenly;
+    align-items: center;
     width:fit-content;
     gap:5px;
     padding:5px 10px;
