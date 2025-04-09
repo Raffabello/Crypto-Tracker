@@ -18,6 +18,7 @@ function getTokensPrices(){
             })
             .then(function(tokens){
                 let currentTime = new Date();
+                let currentEpoch = Date.now()
                 let currentHour = currentTime.getHours().toString().padStart(2,"0");
                 let currentMinute = currentTime.getMinutes().toString().padStart(2,"0");
                 let ampm = currentHour >= 12 ? "PM" : "AM";
@@ -42,7 +43,7 @@ function getTokensPrices(){
                             storedArray.forEach(function(storedArrayItem){
                                 tokens.forEach(function(tokenArrayItem){
                                     if(storedArrayItem.name === tokenArrayItem.name){
-                                        storedArrayItem.pairs.push({x:currentTime,y:tokenArrayItem.current_price});
+                                        storedArrayItem.pairs.push({x:currentTime,y:tokenArrayItem.current_price, z:currentEpoch});
                                     }
                                 })
                             })
@@ -52,7 +53,7 @@ function getTokensPrices(){
                         let cachedArray = tokens.map(function(token){
                             return {
                                 name:token.name,
-                                pairs:[{x:currentTime, y:token.current_price}]
+                                pairs:[{x:currentTime, y:token.current_price, z:currentEpoch}]
                             }
                         })
                         chrome.storage.local.set({"Crypto-tracker-cache":cachedArray})
@@ -64,6 +65,22 @@ function getTokensPrices(){
                 reject(error)
             })
     })
+}
+
+function hasPreviousDaysValues(){
+    let ls = chrome.storage.local
+    ls.get("Crypto-tracker-cache", (items) => {
+        let storedArrayPairs = items["Crypto-tracker-cache"][0].pairs;
+        let storedEpochTimes = storedArrayPairs.map((pair) => pair.z);
+        let currentTime = new Date();
+        let todayStart = new Date(currentTime.getFullYear(), currentTime.getMonth(), currentTime.getDate()).getTime();
+        for(let i = 0; i < storedEpochTimes.length; i ++){
+            if(storedArrayPairs[i] < todayStart){
+                return true
+            }
+        }
+    })
+    return false;
 }
 
 setInterval(() =>{
