@@ -133,8 +133,16 @@ footer{
     border:1px solid black;
     height:150px;
     width:200px;
-    padding:5px;
     transition:transform .5s ease;
+
+    border-radius:12px;
+}
+
+#settings-confirm-button{
+    position:absolute;
+    bottom:5px;
+
+    cursor:pointer;
 }
 
 .settings-choose-currency{
