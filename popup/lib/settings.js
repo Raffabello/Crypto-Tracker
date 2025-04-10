@@ -11,9 +11,12 @@ currencySetting.addEventListener("change", function(event){
 })
 
 applySettingButton.addEventListener("click", function(){
-    //TODO
-    //If the user clicks the apply button, then the settings will be saved in the chrome storage as cache, so that
-    //When the user opens the application again, the settings will be saved
-    //When the user clicks the apply button, also apply the settings, in the current session.
     const cachedSettingsName = "Crypto-currency-tracker-settings";
+    //Apply to the session
+    for(key of Object.keys(settingsMap)){
+        if(key === "currency"){
+            //Apply currency settings
+            loadTokensMarketData(displayTokensMarketData)
+        }
+    }
 })

@@ -1,5 +1,5 @@
-function getTokensInfo(currency = "usd"){
-    const URL = "https://api.coingecko.com/api/v3/coins/markets?order=market_cap_desc&vs_currency="+ currency + "&per_page=5";
+function getTokensInfo(){
+    const URL = "https://api.coingecko.com/api/v3/coins/markets?order=market_cap_desc&vs_currency="+ settingsMap["currency"] + "&per_page=5";
     return new Promise((resolve,reject) => {
         fetch(URL)
             .then(function(response){
@@ -33,6 +33,7 @@ async function loadTokensMarketData(callback){
 
 function displayTokensMarketData(tokens){
         let tokenInfoFrame = document.querySelector(".token-info-frame");
+        tokenInfoFrame.innerHTML = "";
         for(let i = 0; i < tokens.length; i++){
             console.log(tokens[i])
             let tokenRow = document.createElement("div");
@@ -53,7 +54,11 @@ function displayTokensMarketData(tokens){
 
             //token price
             let tokenPrice = document.createElement("div");
-            tokenPrice.innerText = tokens[i].current_price;
+            if(settingsMap["currency"] === "usd"){
+                tokenPrice.innerText = getUSDFormat(tokens[i].current_price);
+            }else{
+                tokenPrice.innerText = getEURFormat(tokens[i].current_price);
+            }
 
             //Plot
             let plotTokenIcon = document.createElement("img");
