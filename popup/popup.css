@@ -81,6 +81,7 @@ header{
 }
 
 footer{
+    display:flex;
     position:relative;
     top:5px;
     font-family: "openSans";
@@ -148,4 +149,9 @@ footer{
 
 #raffabello-tag:hover{
     transform:translateY(-2px);
+}
+
+#settings-button{
+    border:1px solid black;
+    cursor:pointer;
 }
