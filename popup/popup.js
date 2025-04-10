@@ -1,5 +1,5 @@
-function getTokensInfo(){
-    const URL = "https://api.coingecko.com/api/v3/coins/markets?order=market_cap_desc&vs_currency=usd&per_page=5";
+function getTokensInfo(currency = "usd"){
+    const URL = "https://api.coingecko.com/api/v3/coins/markets?order=market_cap_desc&vs_currency="+ currency + "&per_page=5";
     return new Promise((resolve,reject) => {
         fetch(URL)
             .then(function(response){
@@ -78,6 +78,7 @@ loadTokensMarketData(displayTokensMarketData)
 //Other settings
 let settingsButton = document.getElementById("settings-button");
 let settingsWindow = document.getElementById("settings");
+
 settingsButton.addEventListener("click", function(){
     if(settingsWindow.classList.contains("settings-hidden")){
         settingsWindow.classList.remove("settings-hidden");
