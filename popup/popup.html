@@ -18,9 +18,9 @@
         <span id="settings-title">Options</span>
         <div class="settings-choose-currency">
             <span>Currency:</span>
-            <select>
-                <option>EUR</option>
-                <option selected>USD</option>
+            <select id="settings-choose-currency-select">
+                <option value="eur">EUR</option>
+                <option value="usd" selected>USD</option>
             </select>
         </div>
         <button id="settings-confirm-button">Apply</button>
@@ -29,6 +29,7 @@
         <span id="settings-button"><span>Settings</span></span>
         <span id="raffabello-tag"><img src="./icons/github-mark-white.svg" height="16px" width="16px"><span>Raffabello</span></span>
     </footer>
+    <script src="./lib/settings.js"></script>
     <script src="./lib/currency.js"></script>
     <script src="./popup.js"></script>
 </html>
