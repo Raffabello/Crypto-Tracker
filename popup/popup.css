@@ -106,6 +106,46 @@ footer{
     transition:transform .5s ease;
 }
 
+.settings-hidden{
+    display:none;
+}
+
+.settings-visible{
+    display:flex;
+}
+
+#settings-title{
+    position:absolute;
+    left:0;
+    top:0;
+}
+
+#settings{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    border:1px solid black;
+    height:150px;
+    width:200px;
+    padding:5px;
+    transition:transform .5s ease;
+}
+
+.settings-choose-currency{
+    display:flex;
+    gap:10px;
+    justify-content: space-evenly;
+    align-items: center;
+    width:fit-content;
+    height:30px;
+    width:fit-content;
+}
+
 #raffabello-tag:hover{
     transform:translateY(-2px);
 }
