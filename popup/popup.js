@@ -78,18 +78,3 @@ function displayTokensMarketData(tokens){
 }
 
 loadTokensMarketData(displayTokensMarketData)
-
-
-//Other settings
-let settingsButton = document.getElementById("settings-button");
-let settingsWindow = document.getElementById("settings");
-
-settingsButton.addEventListener("click", function(){
-    if(settingsWindow.classList.contains("settings-hidden")){
-        settingsWindow.classList.remove("settings-hidden");
-        settingsWindow.classList.add("settings-visible");
-    }else{
-        settingsWindow.classList.remove("settings-visible");
-        settingsWindow.classList.add("settings-hidden");
-    }
-})
