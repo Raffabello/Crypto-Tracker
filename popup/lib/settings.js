@@ -26,7 +26,6 @@ async function loadSettings(){
             }
             Array.from(currencySetting).forEach((node) => {
                 if(node.innerText.toLowerCase() === settings["Crypto-currency-tracker-settings"]["currency"]){
-                    console.log("here")
                     node.selected = true;
                 }
             })
