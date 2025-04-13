@@ -76,6 +76,11 @@ function displayTokensMarketData(tokens){
             tokenInfoFrame.appendChild(tokenRow);
         }
 }
+//Other settings
+document.getElementById("raffabello-tag").addEventListener("click", function(){
+    chrome.tabs.create({url:"https://github.com/Raffabello"})
+})
+
 loadSettings()
     .then(() => {
         loadTokensMarketData(displayTokensMarketData)
