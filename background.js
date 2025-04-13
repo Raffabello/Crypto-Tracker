@@ -18,12 +18,8 @@ function getTokensPrices(){
             })
             .then(function(tokens){
                 let currentTime = new Date();
+                currentTime = currentTime.toLocaleTimeString("en-US", {hour:"numeric",minute:"2-digit",hour12:true})
                 let currentEpoch = Date.now()
-                let currentHour = currentTime.getHours().toString().padStart(2,"0");
-                let currentMinute = currentTime.getMinutes().toString().padStart(2,"0");
-                let ampm = currentHour >= 12 ? "PM" : "AM";
-                currentTime = currentHour + ":" + currentMinute + ampm;
-
                 chrome.storage.local.get("Crypto-tracker-cache", (items) => {
                     if(items.hasOwnProperty("Crypto-tracker-cache")){
                         //Values are recorded
