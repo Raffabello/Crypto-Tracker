@@ -3,7 +3,7 @@
     "description":"View the top 5 cryptocurrencies market data from a simple popup",
     "version":"1.0",
     "manifest_version":3,
-    "permissions":["storage"],
+    "permissions":["alarms","storage"],
     "background":{
         "service_worker": "background.js"
     },

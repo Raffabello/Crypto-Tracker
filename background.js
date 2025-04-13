@@ -1,4 +1,4 @@
-const TIME_BEFORE_CALL = 300000;
+const MINUTES_BEFORE_CALL = 10;
 const MAX_CACHE_SIZE = 6;
 
 function getTokensPrices(){
@@ -83,7 +83,11 @@ function hasPreviousDaysValues(){
     return false;
 }
 
-setInterval(() =>{
-    getTokensPrices();
-}, TIME_BEFORE_CALL)
+getTokensPrices();
+chrome.alarms.create("api-call", {periodInMinutes:MINUTES_BEFORE_CALL});
 
+chrome.alarms.onAlarm.addListener((alarm) =>{
+    if(alarm.name === "api-call"){
+        getTokensPrices();
+    }
+})
