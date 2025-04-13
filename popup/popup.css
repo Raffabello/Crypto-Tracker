@@ -59,6 +59,10 @@ body{
     user-select:none;
 }
 
+.token-price{
+    font-weight:700;
+}
+
 .token-row:hover{
     transform:scale(1.05);
     outline:1px solid rgb(50,50,50);

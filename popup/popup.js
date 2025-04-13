@@ -53,6 +53,7 @@ function displayTokensMarketData(tokens){
 
             //token price
             let tokenPrice = document.createElement("div");
+            tokenPrice.classList.add("token-price");
             if(settingsMap["currency"] === "usd"){
                 tokenPrice.innerText = getUSDFormat(tokens[i].current_price);
             }else{
