@@ -55,9 +55,9 @@ currencySetting.addEventListener("change", function(event){
 
 applySettingButton.addEventListener("click", function(){
     //Apply to the session
+    //TODO:因为settingsMap可以改变，我不要让这个函数每次呼API,有时间的时候我要赶上
     for(key of Object.keys(settingsMap)){
         if(key === "currency"){
-            //Apply currency settings
             loadTokensMarketData(displayTokensMarketData);
         }
     }
