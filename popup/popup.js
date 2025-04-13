@@ -12,7 +12,6 @@ let plotPreviousButton = document.getElementById("previous-graph");
 plotPreviousButton.addEventListener("click", function(){
         showPreviousTokenPlot();
 })
-
 function getTokensInfo(){
     const URL = "https://api.coingecko.com/api/v3/coins/markets?order=market_cap_desc&vs_currency="+ settingsMap["currency"] + "&per_page=5";
     return new Promise((resolve,reject) => {
@@ -37,10 +36,10 @@ function getTokensInfo(){
     })
 }
 
-async function loadTokensMarketData(){
+async function loadTokensMarketData(callback){
     try{
         let tokens = await getTokensInfo();
-        return tokens;
+        callback(tokens);
     }catch(error){
         console.log(error);
     }
@@ -80,7 +79,6 @@ function displayTokensMarketData(tokens){
             plotTokenIcon.src = "./icons/stockchart-svgrepo-com.svg"
             plotTokenIcon.style.height = "24px";
             plotTokenIcon.style.width = "24px";
-
             chrome.storage.local.get("Crypto-tracker-cache", (items) => {
                 if(items.hasOwnProperty("Crypto-tracker-cache")){
                     plotTokenIcon.addEventListener("click", function(){
@@ -212,4 +210,7 @@ document.getElementById("raffabello-tag").addEventListener("click", function(){
     chrome.tabs.create({url:"https://github.com/Raffabello"})
 })
 
-loadTokensMarketData(displayTokensMarketData)
+loadSettings()
+    .then(() =>{
+        loadTokensMarketData(displayTokensMarketData)
+    })
