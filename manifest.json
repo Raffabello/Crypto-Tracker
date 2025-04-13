@@ -4,6 +4,9 @@
     "version":"1.0",
     "manifest_version":3,
     "permissions":["storage"],
+    "icons":{
+        "256":"./popup/icons/bitcoin_1.png"
+    },
     "action":{
         "default_popup":"./popup/popup.html"
     }
