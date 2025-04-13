@@ -59,7 +59,11 @@ body{
     user-select:none;
 }
 
-.token-row:hover{
+.token-price{
+    font-weight:700;
+}
+
+.token-row:hover:not(.token-row:first-child){
     transform:scale(1.05);
     outline:1px solid rgb(50,50,50);
 }
@@ -70,6 +74,16 @@ body{
     align-items: center;
     height:100%;
 }
+
+.token-row:first-child{
+    border:1px solid gold;
+    box-shadow:0px 0px 2px gold;
+}
+
+.token-row:first-child:hover{
+    transform:scale(1.05);
+}
+
 
 header{
     font-family:"openSans";
