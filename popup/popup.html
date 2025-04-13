@@ -12,6 +12,15 @@
             <div>Price</div>
             <div>Graph</div>
         </div>
+        <div class="token-graph-window token-graph-window-closed">
+            <div id="token-graph-header"></div>
+            <div><canvas id="graph" height="210px" width="210px"></canvas></div>
+            <div class="graph-menu-buttons">
+                <button id="previous-graph">Previous</button>
+                <button id="close-graph">Exit</button>
+                <button id="next-graph">Next</button>
+            </div>
+        </div>
         </div>
     </body>
     <div id="settings" class="settings-hidden">
@@ -31,5 +40,6 @@
     </footer>
     <script src="./lib/settings.js"></script>
     <script src="./lib/currency.js"></script>
+    <script src="./scripts/chart.umd.js"></script>
     <script src="./popup.js"></script>
 </html>
