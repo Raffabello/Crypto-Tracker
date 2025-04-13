@@ -83,9 +83,13 @@ function hasPreviousDaysValues(){
     return false;
 }
 
-getTokensPrices();
-chrome.alarms.create("api-call", {periodInMinutes:MINUTES_BEFORE_CALL});
+chrome.storage.local.get("Crypto-tracker-cache", (item) => {
+    if(!item.hasOwnProperty("Crypto-tracker-cache")){
+        getTokensPrices();
+    }
+})
 
+chrome.alarms.create("api-call", {periodInMinutes:MINUTES_BEFORE_CALL});
 chrome.alarms.onAlarm.addListener((alarm) =>{
     if(alarm.name === "api-call"){
         getTokensPrices();
