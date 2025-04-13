@@ -35,7 +35,6 @@ function displayTokensMarketData(tokens){
         let tokenInfoFrame = document.querySelector(".token-info-frame");
         tokenInfoFrame.innerHTML = "";
         for(let i = 0; i < tokens.length; i++){
-            console.log(tokens[i])
             let tokenRow = document.createElement("div");
             tokenRow.classList.add("token-row");
             tokenRow.style.setProperty("--i", i);
@@ -76,5 +75,7 @@ function displayTokensMarketData(tokens){
             tokenInfoFrame.appendChild(tokenRow);
         }
 }
-
-loadTokensMarketData(displayTokensMarketData)
+loadSettings()
+    .then(() => {
+        loadTokensMarketData(displayTokensMarketData)
+    })
