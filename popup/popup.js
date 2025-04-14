@@ -47,7 +47,6 @@ async function loadTokensMarketData(callback){
 
 function displayTokensMarketData(tokens){
         let tokenInfoFrame = document.querySelector(".token-info-frame");
-        tokenInfoFrame.innerHTML = "";
         for(let i = 0; i < tokens.length; i++){
             let tokenRow = document.createElement("div");
             tokenRow.classList.add("token-row");
@@ -79,6 +78,7 @@ function displayTokensMarketData(tokens){
             plotTokenIcon.src = "./icons/stockchart-svgrepo-com.svg"
             plotTokenIcon.style.height = "24px";
             plotTokenIcon.style.width = "24px";
+            
             chrome.storage.local.get("Crypto-tracker-cache", (items) => {
                 if(items.hasOwnProperty("Crypto-tracker-cache")){
                     plotTokenIcon.addEventListener("click", function(){
