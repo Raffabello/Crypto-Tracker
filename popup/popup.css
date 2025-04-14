@@ -235,6 +235,8 @@ footer{
     border-radius:12px;
     background-color:white;
     box-shadow:0px 0px 10px gainsboro;
+
+    z-index:3;
 }
 
 #settings-confirm-button{
