@@ -65,9 +65,18 @@ body{
     font-weight:700;
 }
 
-.token-row:hover:not(.token-row:first-child){
+.token-row:hover:not(#first-token){
     transform:scale(1.05);
     outline:1px solid rgb(50,50,50);
+}
+
+#first-token{
+    border:1px solid gold;
+    box-shadow:0px 0px 2px gold;
+}
+
+#first-token:hover{
+    transform:scale(1.05);
 }
 
 .token-row div{
@@ -156,16 +165,6 @@ body{
 
     animation:plotShowsUp .5s ease;
 }
-
-.token-row:first-child{
-    border:1px solid gold;
-    box-shadow:0px 0px 2px gold;
-}
-
-.token-row:first-child:hover{
-    transform:scale(1.05);
-}
-
 
 header{
     font-family:"openSans";

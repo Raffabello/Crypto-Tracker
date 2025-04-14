@@ -51,6 +51,9 @@ function displayTokensMarketData(tokens){
             let tokenRow = document.createElement("div");
             tokenRow.classList.add("token-row");
             tokenRow.style.setProperty("--i", i);
+            if(i === 0){
+                tokenRow.setAttribute("id", "first-token");
+            }
 
             //token image
             let tokenImageBox = document.createElement("div");
