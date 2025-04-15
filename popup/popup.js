@@ -46,7 +46,8 @@ async function loadTokensMarketData(callback){
 }
 
 function displayTokensMarketData(tokens){
-        let tokenInfoFrame = document.querySelector(".token-info-frame");
+        let tokenInfoBody = document.querySelector(".token-info-body");
+        tokenInfoBody.innerHTML = "";
         for(let i = 0; i < tokens.length; i++){
             let tokenRow = document.createElement("div");
             tokenRow.classList.add("token-row");
@@ -98,7 +99,7 @@ function displayTokensMarketData(tokens){
             tokenRow.appendChild(tokenPrice);
             tokenRow.appendChild(plotTokenPrice);
 
-            tokenInfoFrame.appendChild(tokenRow);
+            tokenInfoBody.appendChild(tokenRow);
         }
 }
 

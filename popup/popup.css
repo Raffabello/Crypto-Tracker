@@ -12,15 +12,23 @@ body{
 }
 
 .token-info-frame{
+    display:flex;
+    flex-direction: column;
     position:relative;
-    display:grid;
     height: 350px;
     padding:5px;
     margin:10px;
+    gap:10px;
 
     z-index:1;
     border-bottom:1px solid gainsboro;
+}
 
+.token-info-body{
+    display:flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    gap:12px;
     /* If you know what I mean
     overflow-y: hidden;
     overflow-x: hidden;
@@ -28,13 +36,10 @@ body{
 }
 
 .token-info-header{
+    font-size:14px;
     display:grid;
     grid-template-columns: 0.8fr 1fr 1fr 1.5fr;
-}
-
-.token-info-header div{
-    display:flex;
-    justify-content: center;
+    text-align: center;
 }
 
 @keyframes token_row_enter{
