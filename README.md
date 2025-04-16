@@ -1,5 +1,11 @@
 # Crypto-Tracker
-A simple <b>Google Chrome Extension</b> that shows the top five crypto currencies market data from a simple popup window.
+A <b>Google Chrome Extension</b> that shows the top five crypto currencies market data from a simple popup window.
+
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/78f9d697-a3c6-48ea-b7f6-61180756fbde" alt="cryptotracker" />
+</div>
+
+I created this project for learning purposes, and I employed the <a href="https://www.coingecko.com/en/api">Gecko API</a> to pull the token market data.
 
 # What it can do
 - Tracks the prices of the top five cryptocurrencies.
@@ -16,5 +22,6 @@ If your curiosity sparkles, and you are interested in the source code, just clon
 
 <b>If the latter is the case, I'd love you to read the following</b>
 
-<h3>About the License</h3>
-Bear in mind that I created and developed this application under the <b>license Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)</b>, it is not intended to be shared for commercial use, and I want you to give proper credits.
+# About the License
+Bear in mind that I created and developed this application under the <b>license Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)</b>, it is not intended to be used for commercial use, and I want you to give proper credits.
+
