@@ -1,5 +1,5 @@
 # Crypto-Tracker
-A simple <b>Google Chrome Extension</b> that shows the top five crypto currencies market data from a simple popup window.
+A <b>Google Chrome Extension</b> that shows the top five crypto currencies market data from a simple popup window.
 
 # What it can do
 - Tracks the prices of the top five cryptocurrencies.
@@ -17,4 +17,4 @@ If your curiosity sparkles, and you are interested in the source code, just clon
 <b>If the latter is the case, I'd love you to read the following</b>
 
 <h3>About the License</h3>
-Bear in mind that I created and developed this application under the <b>license Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)</b>, it is not intended to be shared for commercial use, and I want you to give proper credits.
+Bear in mind that I created and developed this application under the <b>license Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)</b>, it is not intended to be used for commercial use, and I want you to give proper credits.
